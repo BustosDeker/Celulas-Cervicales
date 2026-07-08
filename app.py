@@ -1499,7 +1499,8 @@ def main():
         uploaded_file = st.file_uploader(
             t("upload_instruction"),
             type=UI_CONFIG["supported_formats"],
-            help=t("upload_help")
+            help=t("upload_help"),
+            key="image_uploader"
         )
         
         if uploaded_file is None:
