@@ -9,19 +9,85 @@ from app_config.settings import MODEL_CONFIG
 
 def load_custom_css():
     """
-    Carga CSS personalizado - Tema Oscuro Moderno
+    Carga CSS personalizado compatible con Modo Claro y Oscuro
     """
     custom_css = """
     <style>
-    /* ======= Global ======= */
-    .main {
-        background-color: #0f172a;
-        color: #e2e8f0;
+    /* ======= Variables CSS para ambos temas ======= */
+    :root {
+        --bg-main-light: #ffffff;
+        --bg-main-dark: #0f172a;
+        --text-main-light: #0f172a;
+        --text-main-dark: #e2e8f0;
+        
+        --bg-sidebar-light: #f1f5f9;
+        --bg-sidebar-dark: #1e293b;
+        
+        --text-heading-light: #1e293b;
+        --text-heading-dark: #f1f5f9;
+        
+        --bg-metric-light: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        --bg-metric-dark: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        --border-metric-light: #cbd5e1;
+        --border-metric-dark: #475569;
+        
+        --text-metric-label-light: #64748b;
+        --text-metric-label-dark: #94a3b8;
+        --text-metric-value-light: #1e293b;
+        --text-metric-value-dark: #f8fafc;
+        
+        --bg-success-light: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+        --bg-success-dark: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+        --border-success-light: #10b981;
+        --border-success-dark: #059669;
+        --text-success-light: #065f46;
+        --text-success-dark: #a7f3d0;
+        
+        --bg-warning-light: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        --bg-warning-dark: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+        --border-warning-light: #f59e0b;
+        --border-warning-dark: #d97706;
+        --text-warning-light: #78350f;
+        --text-warning-dark: #fde68a;
+        
+        --bg-select-light: #f8fafc;
+        --bg-select-dark: #334155;
+        --border-select-light: #cbd5e1;
+        --border-select-dark: #475569;
+        --text-select-light: #1e293b;
+        --text-select-dark: #f1f5f9;
+        
+        --bg-card-light: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        --bg-card-dark: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+        --border-card-light: #cbd5e1;
+        --border-card-dark: #334155;
+        --text-card-model-light: #1e293b;
+        --text-card-model-dark: #f8fafc;
+        --text-card-class-light: #475569;
+        --text-card-class-dark: #cbd5e1;
+        
+        --bg-uploader-light: #f8fafc;
+        --bg-uploader-dark: #1e293b;
+        --border-uploader-light: #cbd5e1;
+        --border-uploader-dark: #475569;
+        
+        --bg-tabs-light: #f8fafc;
+        --bg-tabs-dark: #1e293b;
+        --text-tab-light: #64748b;
+        --text-tab-dark: #94a3b8;
+        
+        --hr-color-light: #e2e8f0;
+        --hr-color-dark: #334155;
     }
     
-    /* ======= Sidebar ======= */
+    /* ======= Estilos para Modo Claro (predeterminado) ======= */
+    .main {
+        background-color: var(--bg-main-light);
+        color: var(--text-main-light);
+    }
+    
     [data-testid="stSidebar"] {
-        background-color: #1e293b;
+        background-color: var(--bg-sidebar-light);
         border-right: none;
         padding: 2rem 1.25rem;
     }
@@ -30,83 +96,72 @@ def load_custom_css():
         padding-top: 0;
     }
     
-    /* ======= Typography ======= */
     h1, h2, h3, h4, h5, h6 {
-        color: #f1f5f9;
+        color: var(--text-heading-light);
         font-weight: 700;
     }
     
-    /* ======= Metrics ======= */
     .stMetric {
-        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-        border: 1px solid #475569;
+        background: var(--bg-metric-light);
+        border: 1px solid var(--border-metric-light);
         border-radius: 16px;
         padding: 1.5rem;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
     }
     
     .stMetric label {
-        color: #94a3b8 !important;
+        color: var(--text-metric-label-light) !important;
         font-weight: 600;
     }
     
     .stMetric [data-testid="stMetricValue"] {
-        color: #f8fafc !important;
+        color: var(--text-metric-value-light) !important;
         font-size: 1.75rem !important;
         font-weight: 700;
     }
     
-    /* ======= Success & Warning ======= */
     .stSuccess {
-        background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
-        border: 1px solid #059669;
+        background: var(--bg-success-light);
+        border: 1px solid var(--border-success-light);
         border-radius: 12px;
-        color: #a7f3d0;
+        color: var(--text-success-light);
     }
     
     .stWarning {
-        background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
-        border: 1px solid #d97706;
+        background: var(--bg-warning-light);
+        border: 1px solid var(--border-warning-light);
         border-radius: 12px;
-        color: #fde68a;
+        color: var(--text-warning-light);
     }
     
-    /* ======= Streamlit Base Elements ======= */
     .stSelectbox label,
     .stCheckbox label,
     .stTextInput label {
-        color: #cbd5e1 !important;
+        color: var(--text-main-light) !important;
     }
     
     .stSelectbox div[data-baseweb="select"] {
-        background-color: #334155 !important;
-        border-color: #475569 !important;
-        color: #f1f5f9 !important;
+        background-color: var(--bg-select-light) !important;
+        border-color: var(--border-select-light) !important;
+        color: var(--text-select-light) !important;
     }
     
     .stCheckbox input:checked + div {
         background-color: #3b82f6 !important;
     }
     
-    /* ======= Result Cards ======= */
     .result-card {
-        background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+        background: var(--bg-card-light);
         border-radius: 20px;
         padding: 1.75rem 1.5rem;
-        border: 2px solid #334155;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        border: 2px solid var(--border-card-light);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         text-align: center;
     }
     
-    .result-card:hover {
-        transform: translateY(-6px) scale(1.02);
-        border-color: #6366f1;
-        box-shadow: 0 20px 60px rgba(99,102,241,0.25);
-    }
-    
     .card-model-name {
-        color: #f8fafc;
+        color: var(--text-card-model-light);
         font-size: 1rem;
         font-weight: 700;
         text-transform: uppercase;
@@ -114,18 +169,129 @@ def load_custom_css():
         margin-bottom: 1.25rem;
     }
     
+    .card-class-name {
+        color: var(--text-card-class-light);
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-bottom: 1.25rem;
+    }
+    
+    [data-testid="stFileUploader"] {
+        background-color: var(--bg-uploader-light);
+        border: 2px dashed var(--border-uploader-light);
+        border-radius: 16px;
+    }
+    
+    .stTabs [data-baseweb="tab-list"] {
+        background-color: var(--bg-tabs-light);
+        border-radius: 12px;
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        background-color: transparent;
+        color: var(--text-tab-light);
+        border-radius: 8px;
+        padding: 0.75rem 1.25rem;
+        font-weight: 600;
+    }
+    
+    hr {
+        border-color: var(--hr-color-light);
+    }
+    
+    /* ======= Estilos para Modo Oscuro (prefiere-color-scheme) ======= */
+    @media (prefers-color-scheme: dark) {
+        .main {
+            background-color: var(--bg-main-dark);
+            color: var(--text-main-dark);
+        }
+        
+        [data-testid="stSidebar"] {
+            background-color: var(--bg-sidebar-dark);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-heading-dark);
+        }
+        
+        .stMetric {
+            background: var(--bg-metric-dark);
+            border: 1px solid var(--border-metric-dark);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        
+        .stMetric label {
+            color: var(--text-metric-label-dark) !important;
+        }
+        
+        .stMetric [data-testid="stMetricValue"] {
+            color: var(--text-metric-value-dark) !important;
+        }
+        
+        .stSuccess {
+            background: var(--bg-success-dark);
+            border: 1px solid var(--border-success-dark);
+            color: var(--text-success-dark);
+        }
+        
+        .stWarning {
+            background: var(--bg-warning-dark);
+            border: 1px solid var(--border-warning-dark);
+            color: var(--text-warning-dark);
+        }
+        
+        .stSelectbox label,
+        .stCheckbox label,
+        .stTextInput label {
+            color: var(--text-main-dark) !important;
+        }
+        
+        .stSelectbox div[data-baseweb="select"] {
+            background-color: var(--bg-select-dark) !important;
+            border-color: var(--border-select-dark) !important;
+            color: var(--text-select-dark) !important;
+        }
+        
+        .result-card {
+            background: var(--bg-card-dark);
+            border: 2px solid var(--border-card-dark);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+        
+        .card-model-name {
+            color: var(--text-card-model-dark);
+        }
+        
+        .card-class-name {
+            color: var(--text-card-class-dark);
+        }
+        
+        [data-testid="stFileUploader"] {
+            background-color: var(--bg-uploader-dark);
+            border: 2px dashed var(--border-uploader-dark);
+        }
+        
+        .stTabs [data-baseweb="tab-list"] {
+            background-color: var(--bg-tabs-dark);
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            color: var(--text-tab-dark);
+        }
+        
+        hr {
+            border-color: var(--hr-color-dark);
+        }
+    }
+    
+    /* ======= Estilos comunes para ambos temas ======= */
     .card-confidence-value {
         font-size: 2.5rem;
         font-weight: 800;
         margin-bottom: 0.75rem;
         line-height: 1;
-    }
-    
-    .card-class-name {
-        color: #cbd5e1;
-        font-size: 0.95rem;
-        font-weight: 500;
-        margin-bottom: 1.25rem;
     }
     
     .card-risk-badge {
@@ -137,31 +303,8 @@ def load_custom_css():
         border: 2px solid;
     }
     
-    /* ======= Image Upload ======= */
-    [data-testid="stFileUploader"] {
-        background-color: #1e293b;
-        border: 2px dashed #475569;
-        border-radius: 16px;
-    }
-    
     [data-testid="stFileUploader"]:hover {
         border-color: #6366f1;
-    }
-    
-    /* ======= Tabs ======= */
-    .stTabs [data-baseweb="tab-list"] {
-        background-color: #1e293b;
-        border-radius: 12px;
-        padding: 0.5rem;
-        gap: 0.5rem;
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        background-color: transparent;
-        color: #94a3b8;
-        border-radius: 8px;
-        padding: 0.75rem 1.25rem;
-        font-weight: 600;
     }
     
     .stTabs [aria-selected="true"] {
@@ -169,7 +312,6 @@ def load_custom_css():
         color: white;
     }
     
-    /* ======= Button ======= */
     .stButton > button {
         background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
         color: white;
@@ -186,9 +328,10 @@ def load_custom_css():
         box-shadow: 0 12px 32px rgba(59,130,246,0.4);
     }
     
-    /* ======= Divider ======= */
-    hr {
-        border-color: #334155;
+    .result-card:hover {
+        transform: translateY(-6px) scale(1.02);
+        border-color: #6366f1;
+        box-shadow: 0 20px 60px rgba(99,102,241,0.25);
     }
     </style>
     """
@@ -197,17 +340,47 @@ def load_custom_css():
 
 def display_header(title=None, subtitle=None, t=None):
     """
-    Muestra el encabezado principal - Tema Oscuro
+    Muestra el encabezado principal compatible con ambos temas
     """
     st.markdown("""
-    <div style="text-align: center; padding: 2rem; margin-bottom: 2rem; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-radius: 24px; border: 2px solid #475569; box-shadow: 0 12px 40px rgba(0,0,0,0.4);">
+    <style>
+    .header-container {
+        text-align: center;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border-radius: 24px;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        border: 2px solid #cbd5e1;
+    }
+    .header-title {
+        margin: 0 0 0.5rem 0;
+        font-size: 2.5rem;
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .header-subtitle {
+        margin: 0;
+        color: #64748b;
+        font-size: 1.25rem;
+    }
+    @media (prefers-color-scheme: dark) {
+        .header-container {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 2px solid #475569;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+        .header-subtitle {
+            color: #94a3b8;
+        }
+    }
+    </style>
+    <div class="header-container">
         <div style="font-size: 4rem; margin-bottom: 0.5rem;">🔬</div>
-        <h1 style="margin: 0 0 0.5rem 0; font-size: 2.5rem; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-            Clasificador de Células Cervicales
-        </h1>
-        <p style="margin: 0; color: #94a3b8; font-size: 1.25rem;">
-            Sistema de análisis automatizado con IA
-        </p>
+        <h1 class="header-title">Clasificador de Células Cervicales</h1>
+        <p class="header-subtitle">Sistema de análisis automatizado con IA</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -259,15 +432,38 @@ def display_image_info(image_info, t=None):
 
 def display_model_results_cards(predictions, clinical_info=None, t=None):
     """
-    Muestra tarjetas con resultados por modelo - Estilo moderno oscuro
+    Muestra tarjetas con resultados por modelo - Estilo compatible con ambos temas
     """
     if not predictions:
         return
     
     # Header with nice styling
     st.markdown("""
-    <div style="text-align: center; margin-bottom: 2rem; padding: 1rem 2rem; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 20px; border: 2px solid #475569;">
-        <h2 style="margin: 0; color: #f1f5f9;">📊 Resultados del Análisis</h2>
+    <style>
+    .results-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding: 1rem 2rem;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        border: 2px solid #cbd5e1;
+    }
+    .results-header h2 {
+        margin: 0;
+        color: #1e293b;
+    }
+    @media (prefers-color-scheme: dark) {
+        .results-header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border: 2px solid #475569;
+        }
+        .results-header h2 {
+            color: #f1f5f9;
+        }
+    }
+    </style>
+    <div class="results-header">
+        <h2>📊 Resultados del Análisis</h2>
     </div>
     """, unsafe_allow_html=True)
     
