@@ -21,7 +21,8 @@ import json
 from PIL import Image
 
 # Importar módulos del proyecto
-sys.path.insert(0, str(Path(__file__).parent))
+project_root = Path(__file__).parent
+sys.path.insert(0, str(project_root))
 from app_config.settings import MODEL_CONFIG, DATA_DIR
 from models.data_loader import get_data_loaders, get_class_weights
 from models.hybrid_architectures import get_hybrid_model, count_parameters

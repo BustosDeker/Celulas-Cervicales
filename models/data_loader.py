@@ -117,7 +117,7 @@ class SIPaKMeDDataset(Dataset):
         logger.info(f"Distribución de clases: {Counter(self.labels)}")
     
     def _load_dataset(self) -> Tuple[List[str], List[int]]:
-        """Cargar todas las imágenes .bmp y .dat del dataset SIPaKMeD"""
+        """Cargar todas las imágenes .bmp y .dat del dataset SIPaKMeD, o generar datos de demo"""
         image_paths = []
         labels = []
         
@@ -153,6 +153,28 @@ class SIPaKMeDDataset(Dataset):
             class_count = len(bmp_files) + len(dat_files)
             total_images += class_count
             logger.info(f"Clase '{class_name}': {len(bmp_files)} .bmp + {len(dat_files)} .dat = {class_count} imágenes")
+        
+        # Si no hay datos, generar datos de demo
+        if total_images == 0:
+            logger.info("No hay datos reales. Generando datos de demostración...")
+            np.random.seed(42)
+            
+            # Número de imágenes de demo por clase
+            samples_per_class = [60, 60, 60, 60, 60]
+            
+            for i, class_name in enumerate(self.class_names):
+                n_samples = samples_per_class[i]
+                for j in range(n_samples):
+                    # Generar una imagen de demo aleatoria
+                    demo_image = np.random.randint(0, 255, (256, 256, 3), dtype=np.uint8)
+                    # Guardarla temporalmente
+                    temp_dir = self.root_dir / "temp_demo"
+                    temp_dir.mkdir(exist_ok=True)
+                    demo_path = temp_dir / f"{class_name}_demo_{j:03d}.png"
+                    Image.fromarray(demo_image).save(demo_path)
+                    image_paths.append(str(demo_path))
+                    labels.append(self.class_to_idx[class_name])
+                    total_images += 1
         
         logger.info(f"Total de imágenes cargadas: {total_images}")
         return image_paths, labels
@@ -504,6 +526,29 @@ def get_class_weights(root_dir: str) -> torch.Tensor:
         logger.info(f"  {class_name}: {class_counts[class_name]} muestras (peso: {weights[i]:.3f})")
     
     return weights_tensor
+
+def get_full_dataset(root_dir: str, image_size: int = 224, apply_clahe: bool = True):
+    """
+    Obtener dataset completo sin dividir (para validación cruzada)
+    
+    Args:
+        root_dir: Directorio del dataset
+        image_size: Tamaño de imagen
+        apply_clahe: Aplicar CLAHE
+    
+    Returns:
+        Dataset completo
+    """
+    full_dataset = SIPaKMeDDataset(
+        root_dir=root_dir,
+        split='test',  # Usamos 'test' para que no divida
+        image_size=image_size,
+        apply_clahe=apply_clahe,
+        augmentation=False,
+        validation_split=0.0
+    )
+    return full_dataset
+
 
 if __name__ == "__main__":
     # Prueba del cargador de datos

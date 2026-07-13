@@ -1,25 +1,31 @@
 # === Framework principal (según Manual de Usuario) ===
-streamlit==1.40.0
-tensorflow==2.15.0
-torch==2.3.0
-numpy==1.26.4
-pandas==2.2.2
-Pillow==10.4.0
+streamlit>=1.30.0
+tensorflow>=2.15.0
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.25.0
+pandas>=2.0.0
+Pillow>=10.0.0
+tqdm>=4.60.0
 
 # === Visualización y reportes ===
-plotly==5.24.1
-matplotlib==3.9.2
-seaborn==0.13.2
-reportlab==4.2.5
-kaleido==0.2.1
+plotly>=5.0.0
+matplotlib>=3.5.0
+seaborn>=0.12.0
+reportlab>=4.0.0
+kaleido>=0.2.0
+python-docx>=1.0.0
+openpyxl>=3.0.0
+xlsxwriter>=3.0.0
 
 # === Dependencias científicas ===
-scikit-learn==1.5.2
-scipy==1.14.1
-h5py==3.12.1
-torchvision==0.18.0
+scikit-learn>=1.2.0
+scipy>=1.10.0
+h5py>=3.0.0
+optuna>=3.0.0
+statsmodels>=0.14.0
 
 # === Requeridas por el código real (models/data_loader.py) ===
 # No estaban listadas en el manual, pero el código las importa directamente.
-opencv-python-headless==4.10.0.84
-albumentations==1.4.20
+opencv-python-headless>=4.5.0
+albumentations>=1.4.0
