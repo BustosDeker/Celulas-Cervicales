@@ -21,5 +21,5 @@ torchvision==0.18.0
 
 # === Requeridas por el código real (models/data_loader.py) ===
 # No estaban listadas en el manual, pero el código las importa directamente.
-opencv-python==4.10.0.84
+opencv-python-headless==4.10.0.84
 albumentations==1.4.20
