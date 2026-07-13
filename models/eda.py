@@ -241,6 +241,21 @@ def plot_color_distribution(dataset_path, save_dir, samples_per_class=50):
     return plot_path
 
 
+def convert_numpy_types(obj):
+    """Convert numpy types to native Python types for JSON serialization"""
+    if isinstance(obj, np.integer):
+        return int(obj)
+    elif isinstance(obj, np.floating):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, dict):
+        return {k: convert_numpy_types(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_numpy_types(item) for item in obj]
+    else:
+        return obj
+
 def run_eda(dataset_path, output_dir):
     """
     Ejecuta el EDA completo y genera todas las visualizaciones
@@ -256,9 +271,14 @@ def run_eda(dataset_path, output_dir):
     if df is None:
         return None
     
+    # Convert numpy types to native Python types
+    stats = convert_numpy_types(stats)
+    
     # Guardar estadísticas como JSON
     stats_path = output_dir / 'eda_statistics.json'
-    pd.DataFrame.from_dict(stats, orient='index').to_json(stats_path)
+    import json
+    with open(stats_path, 'w') as f:
+        json.dump(stats, f, indent=2)
     logger.info(f"Estadísticas guardadas en {stats_path}")
     
     # Guardar dataframe como CSV
@@ -274,9 +294,8 @@ def run_eda(dataset_path, output_dir):
     
     logger.info("\n✅ ¡EDA completado con éxito!")
     return {
-        'dataframe': df,
         'statistics': stats,
-        'plots_dir': output_dir
+        'plots_dir': str(output_dir)
     }
 
 

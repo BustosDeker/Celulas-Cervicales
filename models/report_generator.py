@@ -409,11 +409,10 @@ def generate_pdf_report(results, output_path):
 def generate_all_reports():
     """Generar reportes en todos los formatos"""
     results = load_all_results()
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     
-    generate_pdf_report(results, REPORTS_DIR / f"SiPakMedAI_Report_{timestamp}.pdf")
-    generate_word_report(results, REPORTS_DIR / f"SiPakMedAI_Report_{timestamp}.docx")
-    generate_excel_report(results, REPORTS_DIR / f"SiPakMedAI_Report_{timestamp}.xlsx")
+    generate_pdf_report(results, REPORTS_DIR / "report.pdf")
+    generate_word_report(results, REPORTS_DIR / "report.docx")
+    generate_excel_report(results, REPORTS_DIR / "report.xlsx")
     
     logger.info("\n✅ Todos los reportes generados exitosamente!")
 

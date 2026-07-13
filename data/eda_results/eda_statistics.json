@@ -1,1 +1,44 @@
-{"0":{"total_images":490,"classes_distribution":{"Parabasal":110,"Metapl\u00e1sica":105,"Superficial-Intermedia":98,"Koiloc\u00edtica":92,"Disquerat\u00f3tica":85},"width_stats":{"count":490.0,"mean":224.2857142857,"std":14.982880483,"min":184.0,"25%":215.0,"50%":224.0,"75%":235.0,"max":270.0},"height_stats":{"count":490.0,"mean":224.0959183673,"std":15.5474398919,"min":180.0,"25%":214.0,"50%":224.0,"75%":235.0,"max":264.0},"file_size_stats":{"count":490.0,"mean":150.0631836735,"std":47.7058406441,"min":-24.04,"25%":118.2925,"50%":152.44,"75%":183.5875,"max":283.91},"channels_distribution":{"3":455,"1":35}}}
+{
+  "total_images": 490,
+  "classes_distribution": {
+    "Parabasal": 110,
+    "Metapl\u00e1sica": 105,
+    "Superficial-Intermedia": 98,
+    "Koiloc\u00edtica": 92,
+    "Disquerat\u00f3tica": 85
+  },
+  "width_stats": {
+    "count": 490.0,
+    "mean": 224.28571428571428,
+    "std": 14.982880482953275,
+    "min": 184.0,
+    "25%": 215.0,
+    "50%": 224.0,
+    "75%": 235.0,
+    "max": 270.0
+  },
+  "height_stats": {
+    "count": 490.0,
+    "mean": 224.09591836734694,
+    "std": 15.547439891882087,
+    "min": 180.0,
+    "25%": 214.0,
+    "50%": 224.0,
+    "75%": 235.0,
+    "max": 264.0
+  },
+  "file_size_stats": {
+    "count": 490.0,
+    "mean": 150.06318367346938,
+    "std": 47.70584064411073,
+    "min": -24.04,
+    "25%": 118.2925,
+    "50%": 152.44,
+    "75%": 183.5875,
+    "max": 283.91
+  },
+  "channels_distribution": {
+    "3": 455,
+    "1": 35
+  }
+}

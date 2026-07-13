@@ -7,6 +7,7 @@ import os
 import sys
 import logging
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import torch
@@ -23,6 +24,22 @@ from pathlib import Path
 from tqdm import tqdm
 import json
 from collections import defaultdict
+
+
+def convert_numpy_types(obj):
+    """Convert numpy types to native Python types for JSON serialization"""
+    if isinstance(obj, np.integer):
+        return int(obj)
+    elif isinstance(obj, np.floating):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, dict):
+        return {k: convert_numpy_types(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_numpy_types(item) for item in obj]
+    else:
+        return obj
 
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
@@ -171,7 +188,7 @@ def cross_validate_model(model_name, dataset_path, n_splits=5, num_epochs=20, ba
         model = model.to(device)
         criterion = nn.CrossEntropyLoss(weight=class_weights)
         optimizer = optim.AdamW(model.parameters(), lr=0.001, weight_decay=1e-4)
-        scheduler = ReduceLROnPlateau(optimizer, 'min', patience=3, factor=0.5, verbose=False)
+        scheduler = ReduceLROnPlateau(optimizer, 'min', patience=3, factor=0.5)
         
         best_val_acc = 0.0
         history = {'train_loss': [], 'val_loss': [], 'train_acc': [], 'val_acc': []}
@@ -246,6 +263,8 @@ def cross_validate_model(model_name, dataset_path, n_splits=5, num_epochs=20, ba
     # Plotear resultados de CV
     plot_cv_results(metrics_df, model_name, RESULTS_DIR)
     
+    # Convert numpy types to native Python types
+    aggregated_metrics = convert_numpy_types(aggregated_metrics)
     return aggregated_metrics
 
 

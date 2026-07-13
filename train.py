@@ -387,7 +387,7 @@ def main():
         
         criterion = nn.CrossEntropyLoss(weight=class_weights)
         optimizer = optim.AdamW(model.parameters(), lr=0.001, weight_decay=1e-4)
-        scheduler = ReduceLROnPlateau(optimizer, 'min', patience=3, factor=0.5, verbose=True)
+        scheduler = ReduceLROnPlateau(optimizer, 'min', patience=3, factor=0.5)
         
         _, metrics, _, _, _ = train_model(
             model_name, model, train_loader, val_loader, criterion, optimizer, scheduler, device, num_epochs=num_epochs
@@ -402,7 +402,7 @@ def main():
         
         criterion = nn.CrossEntropyLoss(weight=class_weights)
         optimizer = optim.AdamW(model.parameters(), lr=0.001, weight_decay=1e-4)
-        scheduler = ReduceLROnPlateau(optimizer, 'min', patience=3, factor=0.5, verbose=True)
+        scheduler = ReduceLROnPlateau(optimizer, 'min', patience=3, factor=0.5)
         
         _, metrics, _, _, _ = train_model(
             model_name, model, train_loader, val_loader, criterion, optimizer, scheduler, device, num_epochs=num_epochs

@@ -18,6 +18,22 @@ from pathlib import Path
 from tqdm import tqdm
 import json
 
+
+def convert_numpy_types(obj):
+    """Convert numpy types to native Python types for JSON serialization"""
+    if isinstance(obj, np.integer):
+        return int(obj)
+    elif isinstance(obj, np.floating):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, dict):
+        return {k: convert_numpy_types(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_numpy_types(item) for item in obj]
+    else:
+        return obj
+
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 from app_config.settings import MODEL_CONFIG, DATA_DIR
@@ -142,7 +158,7 @@ def objective(trial, model_name, dataset_path):
     else:  # SGD
         optimizer = optim.SGD(model.parameters(), lr=lr, weight_decay=weight_decay, momentum=0.9)
     
-    scheduler = ReduceLROnPlateau(optimizer, 'min', patience=3, factor=0.5, verbose=False)
+    scheduler = ReduceLROnPlateau(optimizer, 'min', patience=3, factor=0.5)
     
     best_val_acc = 0.0
     num_epochs = 15
@@ -217,6 +233,8 @@ def tune_hyperparameters(model_name, dataset_path, n_trials=50):
     # Plotear resultados
     plot_optuna_results(study, model_name, RESULTS_DIR)
     
+    # Convert numpy types to native Python types
+    results = convert_numpy_types(results)
     return study, results
 
 
