@@ -48,9 +48,18 @@ def enhance_cervical_cell_image(image):
         return image
 
 
-def predict_cervical_cells(image, models):
+import streamlit as st
+import hashlib
+
+def get_image_hash(image):
+    """Genera un hash único para la imagen para usar en caché"""
+    img_array = np.array(image)
+    return hashlib.sha256(img_array.tobytes()).hexdigest()
+
+@st.cache_data(show_spinner=False)
+def predict_cervical_cells(_image_hash, _models, image):
     """
-    Realiza predicciones con los modelos.
+    Realiza predicciones con los modelos (cacheadas por imagen).
     Usa modelos reales si están disponibles, si no usa simulación.
     """
     try:
@@ -61,7 +70,7 @@ def predict_cervical_cells(image, models):
         # Preprocesamiento de la imagen para modelos (si los hay reales)
         input_size = MODEL_CONFIG.get("image_size", (224, 224))
         
-        for model_name, model in models.items():
+        for model_name, model in _models.items():
             if model is not None:
                 # Modelo real disponible: intentar usarlo
                 try:

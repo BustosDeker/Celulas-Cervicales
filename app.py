@@ -1538,7 +1538,9 @@ def main():
             
             # Realizar predicciones con modelos TensorFlow
             st.markdown(f"#### {t('analyzing_ai')}")
-            predictions = predict_cervical_cells(analysis_image, models)
+            from app_utils.ml_predictions import get_image_hash
+            image_hash = get_image_hash(analysis_image)
+            predictions = predict_cervical_cells(image_hash, models, analysis_image)
             
             # Agregar predicciones de modelos híbridos si están disponibles
             if is_hybrid_available():
@@ -1757,7 +1759,9 @@ if __name__ == "__main__":
                     st.markdown("#### 🔍 Análisis")
                     try:
                         from app_utils.ml_predictions import predict_cervical_cells
-                        predictions = predict_cervical_cells(original_image, models)
+                        from app_utils.ml_predictions import get_image_hash
+                        image_hash = get_image_hash(original_image)
+                        predictions = predict_cervical_cells(image_hash, models, original_image)
                         
                         if predictions:
                             st.success("✅ Análisis completado")
