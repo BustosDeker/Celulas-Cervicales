@@ -129,12 +129,12 @@ async def get_training_results():
 
 # --- Cross-validation endpoints ---
 @app.post("/api/cross-validation/run")
-async def run_cv_endpoint(n_splits: int = 5):
+async def run_cv_endpoint(n_splits: int = 3):
     try:
         result = run_all_cross_validation(
             dataset_path=DATA_DIR / "dataset",
             n_splits=n_splits,
-            num_epochs=20
+            num_epochs=5
         )
         return {"success": True, "data": result}
     except Exception as e:
@@ -146,7 +146,7 @@ async def run_hp_tuning():
     try:
         result = tune_all_models(
             dataset_path=DATA_DIR / "dataset",
-            n_trials=30
+            n_trials=10
         )
         return {"success": True, "data": result}
     except Exception as e:

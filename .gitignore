@@ -49,3 +49,8 @@ Thumbs.db
 
 # ML models (if you have large model files)
 # data/models/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/

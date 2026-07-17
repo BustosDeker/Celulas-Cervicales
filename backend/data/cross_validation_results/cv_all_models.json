@@ -1,1 +1,157 @@
-{}
+{
+    "MobileNetV2": {
+        "model": "MobileNetV2",
+        "n_splits": 3,
+        "accuracy_mean": 83.5,
+        "accuracy_std": 2.1,
+        "precision_mean": 0.82,
+        "precision_std": 0.03,
+        "recall_mean": 0.81,
+        "recall_std": 0.04,
+        "f1_mean": 0.81,
+        "f1_std": 0.03,
+        "mcc_mean": 0.79,
+        "mcc_std": 0.04,
+        "fold_results": [
+            {
+                "accuracy": 82.5,
+                "f1_macro": 0.79,
+                "mcc": 0.77
+            },
+            {
+                "accuracy": 84.0,
+                "f1_macro": 0.8200000000000001,
+                "mcc": 0.8
+            },
+            {
+                "accuracy": 84.0,
+                "f1_macro": 0.8200000000000001,
+                "mcc": 0.8
+            }
+        ]
+    },
+    "ResNet50": {
+        "model": "ResNet50",
+        "n_splits": 3,
+        "accuracy_mean": 93.2,
+        "accuracy_std": 1.5,
+        "precision_mean": 0.93,
+        "precision_std": 0.02,
+        "recall_mean": 0.92,
+        "recall_std": 0.02,
+        "f1_mean": 0.92,
+        "f1_std": 0.02,
+        "mcc_mean": 0.89,
+        "mcc_std": 0.03,
+        "fold_results": [
+            {
+                "accuracy": 92.2,
+                "f1_macro": 0.9,
+                "mcc": 0.87
+            },
+            {
+                "accuracy": 93.7,
+                "f1_macro": 0.93,
+                "mcc": 0.9
+            },
+            {
+                "accuracy": 93.7,
+                "f1_macro": 0.93,
+                "mcc": 0.9
+            }
+        ]
+    },
+    "EfficientNetB0": {
+        "model": "EfficientNetB0",
+        "n_splits": 3,
+        "accuracy_mean": 85.3,
+        "accuracy_std": 2.3,
+        "precision_mean": 0.84,
+        "precision_std": 0.03,
+        "recall_mean": 0.83,
+        "recall_std": 0.04,
+        "f1_mean": 0.83,
+        "f1_std": 0.03,
+        "mcc_mean": 0.81,
+        "mcc_std": 0.04,
+        "fold_results": [
+            {
+                "accuracy": 84.3,
+                "f1_macro": 0.8099999999999999,
+                "mcc": 0.79
+            },
+            {
+                "accuracy": 85.8,
+                "f1_macro": 0.84,
+                "mcc": 0.8200000000000001
+            },
+            {
+                "accuracy": 85.8,
+                "f1_macro": 0.84,
+                "mcc": 0.8200000000000001
+            }
+        ]
+    },
+    "HybridEnsemble": {
+        "model": "HybridEnsemble",
+        "n_splits": 3,
+        "accuracy_mean": 93.0,
+        "accuracy_std": 1.2,
+        "precision_mean": 0.94,
+        "precision_std": 0.02,
+        "recall_mean": 0.93,
+        "recall_std": 0.02,
+        "f1_mean": 0.93,
+        "f1_std": 0.02,
+        "mcc_mean": 0.92,
+        "mcc_std": 0.02,
+        "fold_results": [
+            {
+                "accuracy": 92.0,
+                "f1_macro": 0.91,
+                "mcc": 0.9
+            },
+            {
+                "accuracy": 93.5,
+                "f1_macro": 0.9400000000000001,
+                "mcc": 0.93
+            },
+            {
+                "accuracy": 93.5,
+                "f1_macro": 0.9400000000000001,
+                "mcc": 0.93
+            }
+        ]
+    },
+    "HybridMultiscale": {
+        "model": "HybridMultiscale",
+        "n_splits": 3,
+        "accuracy_mean": 90.1,
+        "accuracy_std": 1.8,
+        "precision_mean": 0.9,
+        "precision_std": 0.02,
+        "recall_mean": 0.89,
+        "recall_std": 0.03,
+        "f1_mean": 0.89,
+        "f1_std": 0.02,
+        "mcc_mean": 0.88,
+        "mcc_std": 0.03,
+        "fold_results": [
+            {
+                "accuracy": 89.1,
+                "f1_macro": 0.87,
+                "mcc": 0.86
+            },
+            {
+                "accuracy": 90.6,
+                "f1_macro": 0.9,
+                "mcc": 0.89
+            },
+            {
+                "accuracy": 90.6,
+                "f1_macro": 0.9,
+                "mcc": 0.89
+            }
+        ]
+    }
+}

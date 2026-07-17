@@ -3,17 +3,16 @@ Configuración de la aplicación SiPakMed-AI
 """
 
 import os
-from pathlib import Path
 import streamlit as st
 
 # Rutas base
-BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DATA_DIR = BASE_DIR / "data"
-MODELS_DIR = DATA_DIR / "models"
-TRANSLATIONS_DIR = DATA_DIR / "translations"
-TRAINING_RESULTS_DIR = DATA_DIR / "training_results"
-COMPARISON_RESULTS_DIR = DATA_DIR / "comparison_results"
-ASSETS_DIR = BASE_DIR / "assets"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+MODELS_DIR = os.path.join(DATA_DIR, "models")
+TRANSLATIONS_DIR = os.path.join(DATA_DIR, "translations")
+TRAINING_RESULTS_DIR = os.path.join(DATA_DIR, "training_results")
+COMPARISON_RESULTS_DIR = os.path.join(DATA_DIR, "comparison_results")
+ASSETS_DIR = os.path.join(BASE_DIR, "assets")
 
 # Configuración de UI
 UI_CONFIG = {
@@ -26,7 +25,7 @@ UI_CONFIG = {
 
 # Configuración de modelos
 MODEL_CONFIG = {
-    "class_names": ["dyskeratotic", "koilocytotic", "metaplastic", "parabasal", "superficial_intermediate"],
+    "class_names": ["dyskeratotic", "koilocytotic", "metaplastic", "parabasal", "superficial-intermediate"],
     "image_size": (224, 224),
     "models": {
         "MobileNetV2": {

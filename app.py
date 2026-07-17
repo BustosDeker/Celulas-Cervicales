@@ -1499,8 +1499,7 @@ def main():
         uploaded_file = st.file_uploader(
             t("upload_instruction"),
             type=UI_CONFIG["supported_formats"],
-            help=t("upload_help"),
-            key="image_uploader"
+            help=t("upload_help")
         )
         
         if uploaded_file is None:
@@ -1538,9 +1537,7 @@ def main():
             
             # Realizar predicciones con modelos TensorFlow
             st.markdown(f"#### {t('analyzing_ai')}")
-            from app_utils.ml_predictions import get_image_hash
-            image_hash = get_image_hash(analysis_image)
-            predictions = predict_cervical_cells(image_hash, models, analysis_image)
+            predictions = predict_cervical_cells(analysis_image, models)
             
             # Agregar predicciones de modelos híbridos si están disponibles
             if is_hybrid_available():
@@ -1759,9 +1756,7 @@ if __name__ == "__main__":
                     st.markdown("#### 🔍 Análisis")
                     try:
                         from app_utils.ml_predictions import predict_cervical_cells
-                        from app_utils.ml_predictions import get_image_hash
-                        image_hash = get_image_hash(original_image)
-                        predictions = predict_cervical_cells(image_hash, models, original_image)
+                        predictions = predict_cervical_cells(original_image, models)
                         
                         if predictions:
                             st.success("✅ Análisis completado")

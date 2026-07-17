@@ -252,12 +252,9 @@ def get_clinical_info(class_name: str = None):
     return CLINICAL_INFO
 
 
-import streamlit as st
-
-@st.cache_resource(show_spinner=False)
 def load_models():
     """
-    Carga los modelos de ML (cacheados para no recargarlos en cada interacción).
+    Carga los modelos de ML.
     """
     from app_config.settings import MODEL_CONFIG, MODELS_DIR
     import os
@@ -267,15 +264,22 @@ def load_models():
     models = {}
     
     try:
+        # Importar tensorflow si está disponible
+        try:
+            import tensorflow as tf
+            TF_AVAILABLE = True
+        except ImportError:
+            TF_AVAILABLE = False
+            tf = None
+        
         for model_name, model_config in MODEL_CONFIG["models"].items():
             model_file = os.path.join(MODELS_DIR, model_config["file"])
             
             if os.path.exists(model_file):
                 logger.info(f"Cargando modelo {model_name} desde {model_file}...")
                 
-                if model_config["type"] == "keras":
+                if model_config["type"] == "keras" and TF_AVAILABLE:
                     try:
-                        import tensorflow as tf
                         model = tf.keras.models.load_model(model_file)
                         models[model_name] = model
                         logger.info(f"✅ Modelo {model_name} cargado exitosamente!")
