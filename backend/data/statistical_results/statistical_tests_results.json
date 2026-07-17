@@ -1,0 +1,137 @@
+{
+    "accuracy": {
+        "shapiro_wilk": {
+            "MobileNetV2": {
+                "statistic": 0.7500000000000001,
+                "p_value": 3.3306690738754696e-16,
+                "normal": false
+            },
+            "ResNet50": {
+                "statistic": 0.7500000000000001,
+                "p_value": 3.3306690738754696e-16,
+                "normal": false
+            },
+            "EfficientNetB0": {
+                "statistic": 0.7500000000000001,
+                "p_value": 3.3306690738754696e-16,
+                "normal": false
+            },
+            "HybridEnsemble": {
+                "statistic": 0.7500000000000001,
+                "p_value": 3.3306690738754696e-16,
+                "normal": false
+            },
+            "HybridMultiscale": {
+                "statistic": 0.7500000000000001,
+                "p_value": 3.3306690738754696e-16,
+                "normal": false
+            }
+        },
+        "levene": {
+            "statistic": 0.0,
+            "p_value": 1.0,
+            "equal_variances": true
+        },
+        "anova": {
+            "f_statistic": 78.78799999999944,
+            "p_value": 1.6085828501815708e-07,
+            "significant": true
+        },
+        "kruskal_wallis": {
+            "h_statistic": 13.150750750750756,
+            "p_value": 0.010562212868636742,
+            "significant": true
+        },
+        "tukey_hsd": "           Multiple Comparison of Means - Tukey HSD, FWER=0.05           \n=========================================================================\n     group1           group2      meandiff p-adj   lower    upper  reject\n-------------------------------------------------------------------------\n  EfficientNetB0   HybridEnsemble      7.7    0.0   5.3729 10.0271   True\n  EfficientNetB0 HybridMultiscale      4.8 0.0004   2.4729  7.1271   True\n  EfficientNetB0      MobileNetV2     -1.8 0.1557  -4.1271  0.5271  False\n  EfficientNetB0         ResNet50      7.9    0.0   5.5729 10.2271   True\n  HybridEnsemble HybridMultiscale     -2.9 0.0143  -5.2271 -0.5729   True\n  HybridEnsemble      MobileNetV2     -9.5    0.0 -11.8271 -7.1729   True\n  HybridEnsemble         ResNet50      0.2 0.9983  -2.1271  2.5271  False\nHybridMultiscale      MobileNetV2     -6.6    0.0  -8.9271 -4.2729   True\nHybridMultiscale         ResNet50      3.1 0.0093   0.7729  5.4271   True\n     MobileNetV2         ResNet50      9.7    0.0   7.3729 12.0271   True\n-------------------------------------------------------------------------"
+    },
+    "f1": {
+        "shapiro_wilk": {
+            "MobileNetV2": {
+                "statistic": 0.7500000000000002,
+                "p_value": 7.771561172376096e-16,
+                "normal": false
+            },
+            "ResNet50": {
+                "statistic": 0.7500000000000002,
+                "p_value": 7.771561172376096e-16,
+                "normal": false
+            },
+            "EfficientNetB0": {
+                "statistic": 0.7500000000000002,
+                "p_value": 7.771561172376096e-16,
+                "normal": false
+            },
+            "HybridEnsemble": {
+                "statistic": 0.7500000000000002,
+                "p_value": 7.771561172376096e-16,
+                "normal": false
+            },
+            "HybridMultiscale": {
+                "statistic": 0.7500000000000002,
+                "p_value": 7.771561172376096e-16,
+                "normal": false
+            }
+        },
+        "levene": {
+            "statistic": 0.0,
+            "p_value": 1.0,
+            "equal_variances": true
+        },
+        "anova": {
+            "f_statistic": 28.799999999999926,
+            "p_value": 1.820605851240308e-05,
+            "significant": true
+        },
+        "kruskal_wallis": {
+            "h_statistic": 12.410628019323665,
+            "p_value": 0.01454518600355944,
+            "significant": true
+        },
+        "tukey_hsd": "          Multiple Comparison of Means - Tukey HSD, FWER=0.05           \n========================================================================\n     group1           group2      meandiff p-adj   lower   upper  reject\n------------------------------------------------------------------------\n  EfficientNetB0   HybridEnsemble      0.1 0.0003  0.0535  0.1465   True\n  EfficientNetB0 HybridMultiscale     0.06 0.0116  0.0135  0.1065   True\n  EfficientNetB0      MobileNetV2    -0.02 0.6331 -0.0665  0.0265  False\n  EfficientNetB0         ResNet50     0.09 0.0006  0.0435  0.1365   True\n  HybridEnsemble HybridMultiscale    -0.04  0.102 -0.0865  0.0065  False\n  HybridEnsemble      MobileNetV2    -0.12 0.0001 -0.1665 -0.0735   True\n  HybridEnsemble         ResNet50    -0.01 0.9502 -0.0565  0.0365  False\nHybridMultiscale      MobileNetV2    -0.08 0.0015 -0.1265 -0.0335   True\nHybridMultiscale         ResNet50     0.03  0.283 -0.0165  0.0765  False\n     MobileNetV2         ResNet50     0.11 0.0001  0.0635  0.1565   True\n------------------------------------------------------------------------"
+    },
+    "mcc": {
+        "shapiro_wilk": {
+            "MobileNetV2": {
+                "statistic": 0.7500000000000002,
+                "p_value": 7.771561172376096e-16,
+                "normal": false
+            },
+            "ResNet50": {
+                "statistic": 0.7500000000000002,
+                "p_value": 7.771561172376096e-16,
+                "normal": false
+            },
+            "EfficientNetB0": {
+                "statistic": 0.7500000000000002,
+                "p_value": 7.771561172376096e-16,
+                "normal": false
+            },
+            "HybridEnsemble": {
+                "statistic": 0.7500000000000002,
+                "p_value": 7.771561172376096e-16,
+                "normal": false
+            },
+            "HybridMultiscale": {
+                "statistic": 0.7500000000000002,
+                "p_value": 7.771561172376096e-16,
+                "normal": false
+            }
+        },
+        "levene": {
+            "statistic": 0.0,
+            "p_value": 1.0,
+            "equal_variances": true
+        },
+        "anova": {
+            "f_statistic": 30.699999999999896,
+            "p_value": 1.3614943991032655e-05,
+            "significant": true
+        },
+        "kruskal_wallis": {
+            "h_statistic": 12.410628019323665,
+            "p_value": 0.01454518600355944,
+            "significant": true
+        },
+        "tukey_hsd": "          Multiple Comparison of Means - Tukey HSD, FWER=0.05           \n========================================================================\n     group1           group2      meandiff p-adj   lower   upper  reject\n------------------------------------------------------------------------\n  EfficientNetB0   HybridEnsemble     0.11 0.0001  0.0635  0.1565   True\n  EfficientNetB0 HybridMultiscale     0.07 0.0041  0.0235  0.1165   True\n  EfficientNetB0      MobileNetV2    -0.02 0.6331 -0.0665  0.0265  False\n  EfficientNetB0         ResNet50     0.08 0.0015  0.0335  0.1265   True\n  HybridEnsemble HybridMultiscale    -0.04  0.102 -0.0865  0.0065  False\n  HybridEnsemble      MobileNetV2    -0.13    0.0 -0.1765 -0.0835   True\n  HybridEnsemble         ResNet50    -0.03  0.283 -0.0765  0.0165  False\nHybridMultiscale      MobileNetV2    -0.09 0.0006 -0.1365 -0.0435   True\nHybridMultiscale         ResNet50     0.01 0.9502 -0.0365  0.0565  False\n     MobileNetV2         ResNet50      0.1 0.0003  0.0535  0.1465   True\n------------------------------------------------------------------------"
+    }
+}

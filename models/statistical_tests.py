@@ -60,9 +60,9 @@ def perform_shapiro_wilk(df, metric='accuracy'):
         values = df[df['model'] == model][metric].values
         stat, p_value = stats.shapiro(values)
         results[model] = {
-            'statistic': stat,
-            'p_value': p_value,
-            'normal': p_value > 0.05
+            'statistic': float(stat),
+            'p_value': float(p_value),
+            'normal': bool(p_value > 0.05)
         }
         logger.info(f"Shapiro-Wilk para {model} ( {metric} ): W={stat:.4f}, p={p_value:.4f}")
     return results
@@ -73,7 +73,7 @@ def perform_levene_test(df, metric='accuracy'):
     groups = [df[df['model'] == model][metric].values for model in df['model'].unique()]
     stat, p_value = stats.levene(*groups)
     logger.info(f"Levene Test ( {metric} ): W={stat:.4f}, p={p_value:.4f}")
-    return {'statistic': stat, 'p_value': p_value, 'equal_variances': p_value > 0.05}
+    return {'statistic': float(stat), 'p_value': float(p_value), 'equal_variances': bool(p_value > 0.05)}
 
 
 def perform_anova(df, metric='accuracy'):
@@ -81,7 +81,7 @@ def perform_anova(df, metric='accuracy'):
     groups = [df[df['model'] == model][metric].values for model in df['model'].unique()]
     f_stat, p_value = stats.f_oneway(*groups)
     logger.info(f"ANOVA ( {metric} ): F={f_stat:.4f}, p={p_value:.4f}")
-    return {'f_statistic': f_stat, 'p_value': p_value, 'significant': p_value < 0.05}
+    return {'f_statistic': float(f_stat), 'p_value': float(p_value), 'significant': bool(p_value < 0.05)}
 
 
 def perform_kruskal_wallis(df, metric='accuracy'):
@@ -89,7 +89,7 @@ def perform_kruskal_wallis(df, metric='accuracy'):
     groups = [df[df['model'] == model][metric].values for model in df['model'].unique()]
     h_stat, p_value = stats.kruskal(*groups)
     logger.info(f"Kruskal-Wallis ( {metric} ): H={h_stat:.4f}, p={p_value:.4f}")
-    return {'h_statistic': h_stat, 'p_value': p_value, 'significant': p_value < 0.05}
+    return {'h_statistic': float(h_stat), 'p_value': float(p_value), 'significant': bool(p_value < 0.05)}
 
 
 def perform_tukey_hsd(df, metric='accuracy'):

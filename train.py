@@ -21,8 +21,7 @@ import json
 from PIL import Image
 
 # Importar módulos del proyecto
-project_root = Path(__file__).parent
-sys.path.insert(0, str(project_root))
+sys.path.insert(0, str(Path(__file__).parent))
 from app_config.settings import MODEL_CONFIG, DATA_DIR
 from models.data_loader import get_data_loaders, get_class_weights
 from models.hybrid_architectures import get_hybrid_model, count_parameters
@@ -387,7 +386,7 @@ def main():
         
         criterion = nn.CrossEntropyLoss(weight=class_weights)
         optimizer = optim.AdamW(model.parameters(), lr=0.001, weight_decay=1e-4)
-        scheduler = ReduceLROnPlateau(optimizer, 'min', patience=3, factor=0.5)
+        scheduler = ReduceLROnPlateau(optimizer, 'min', patience=3, factor=0.5, verbose=True)
         
         _, metrics, _, _, _ = train_model(
             model_name, model, train_loader, val_loader, criterion, optimizer, scheduler, device, num_epochs=num_epochs
@@ -402,7 +401,7 @@ def main():
         
         criterion = nn.CrossEntropyLoss(weight=class_weights)
         optimizer = optim.AdamW(model.parameters(), lr=0.001, weight_decay=1e-4)
-        scheduler = ReduceLROnPlateau(optimizer, 'min', patience=3, factor=0.5)
+        scheduler = ReduceLROnPlateau(optimizer, 'min', patience=3, factor=0.5, verbose=True)
         
         _, metrics, _, _, _ = train_model(
             model_name, model, train_loader, val_loader, criterion, optimizer, scheduler, device, num_epochs=num_epochs
